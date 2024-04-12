@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Створення книги</title>
+  <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+<div style="display: flex; justify-content: space-between;">
+  <div>
+    <a type="static" href="create_book.html">Створення книги</a>
+    <a type="static" href="books_table.html">Таблиця книг</a>
+    <a type="static" href="books_list.html">Список книг</a>
+  </div>
+</div>
+<h2>Створення книги</h2>
+<form onsubmit="createBook(); return false;">
+  <label for="title">Назва книги:</label><br>
+  <input type="text" id="title" name="title"><br>
+  <label for="description">Опис книги:</label><br>
+  <textarea id="description" name="description"></textarea><br>
+  <button type="submit">Створити</button>
+</form>
+<script>
+    function createBook() {
+        var title = document.getElementById("title").value;
+        var description = document.getElementById("description").value;
+
+        eel.create_book(title, description)(function (response) {
+            alert(response);
+            document.getElementById("title").value = "";
+            document.getElementById("description").value = "";
+        });
+    }
+</script>
+</body>
+</html>
