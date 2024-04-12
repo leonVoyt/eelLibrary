@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+}
+.header {
+  height: 60px;
+  border: 2px solid white;
+  width: 100%;
+  display: flex;
+}
+.navigation-link {
+  display: flex;
+  border: 2px solid white;
+  height: 100%;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+}
+.content {
+  padding: 20px;
+  border: 2px solid white;
+}
+.formContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.create__form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 24px;
+  align-items: flex-end;
+}
+.create__form--field {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+  gap: 40px;
+  white-space: nowrap;
+}
+.create__form--field input {
+  display: flex;
+  border: 2px solid white;
+  height: 46px;
+  /* flex: 1; */
+  color: white;
+
+  width: 70%;
+  background-color: transparent;
+}
+.create__form--field textarea {
+  display: flex;
+  border: 2px solid white;
+  height: 80px;
+  /* flex: 1; */
+  color: white;
+
+  width: 70%;
+
+  background-color: transparent;
+}
+.create__form--field button {
+  display: flex;
+  border: 2px solid white;
+  height: 50px;
+  width: 180px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+.table__container {
+  border: 2px solid white;
+}
+.table__container h1 {
+  padding: 12px;
+}
+table {
+  display: table;
+  width: 100%;
+}
+table th {
+  border: 2px solid white;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 8px 12px;
+}
+table td {
+  border: 2px solid white;
+  border-collapse: collapse;
+  text-align: center;
+  padding: 8px 12px;
+}
+.books_list--container {
+  border: 2px solid white;
+  padding: 20px 20px 120px 20px;
+}
+.books_list--content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.delete-form {
+  display: flex;
+  width: 80%;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-end;
+}
+.select__book {
+  border: 2px solid white;
+  height: 80px;
+  /* flex: 1; */
+  color: white;
+
+  width: 70%;
+
+  background-color: transparent;
+}
+.delete_book--btn {
+  display: flex;
+  border: 2px solid white;
+  height: 50px;
+  width: 180px;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  margin-left: auto;
+}

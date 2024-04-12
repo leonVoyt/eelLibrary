@@ -1,57 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Книги</title>
-  <script type="text/javascript" src="/eel.js"></script>
-</head>
-<body>
-<div style="display: flex; justify-content: space-between;">
-  <div>
-    <a type="static" href="create_book.html">Створення книги</a>
-    <a type="static" href="books_table.html">Таблиця книг</a>
-    <a type="static" href="books_list.html">Список книг</a>
-  </div>
-</div>
-<h1>Всі книги</h1>
-<table id="books-table">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Назва книги</th>
-    <th>Опис книги</th>
-    <th>Дія</th>
-  </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-<script>
-    function loadBooks() {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Книги</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <section class="container">
+      <div style="display: flex; justify-content: space-between">
+        <div class="header">
+          <a type="static" class="navigation-link" href="create_book.html"
+            >Створення книги</a
+          >
+          <a type="static" class="navigation-link" href="books_table.html"
+            >Таблиця книг</a
+          >
+          <a type="static" class="navigation-link" href="books_list.html"
+            >Список книг</a
+          >
+        </div>
+      </div>
+
+      <div class="table__container">
+        <h1>Всі книги</h1>
+        <table id="books-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Назва книги</th>
+              <th>Опис книги</th>
+              <th>Дія</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    <script>
+      function loadBooks() {
         eel.get_books()(function (books) {
-            var tableBody = document.getElementById('books-table').getElementsByTagName('tbody')[0];
-            tableBody.innerHTML = '';
-            books.forEach(function (book) {
-                var row = tableBody.insertRow();
-                row.innerHTML = '<td>' + book[0] + '</td>' +
-                    '<td>' + book[1] + '</td>' +
-                    '<td>' + book[2] + '</td>' +
-                    '<td><button onclick="deleteBook(' + book[0] + ')">Видалити</button></td>';
-            });
+          var tableBody = document
+            .getElementById("books-table")
+            .getElementsByTagName("tbody")[0];
+          tableBody.innerHTML = "";
+          books.forEach(function (book) {
+            var row = tableBody.insertRow();
+            row.innerHTML =
+              "<td>" +
+              book[0] +
+              "</td>" +
+              "<td>" +
+              book[1] +
+              "</td>" +
+              "<td>" +
+              book[2] +
+              "</td>" +
+              '<td><button onclick="deleteBook(' +
+              book[0] +
+              ')">Видалити</button></td>';
+          });
         });
-    }
+      }
 
-    function deleteBook(bookId) {
+      function deleteBook(bookId) {
         if (confirm("Ви впевнені, що хочете видалити цю книгу?")) {
-            eel.delete_book(bookId)(function (response) {
-                if (response) {
-                    loadBooks();
-                }
-            });
+          eel.delete_book(bookId)(function (response) {
+            if (response) {
+              loadBooks();
+            }
+          });
         }
-    }
+      }
 
-    loadBooks();
-</script>
-</body>
+      loadBooks();
+    </script>
+  </body>
 </html>

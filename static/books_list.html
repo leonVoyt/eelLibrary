@@ -1,64 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Книги</title>
-  <script type="text/javascript" src="/eel.js"></script>
-</head>
-<body>
-<div style="display: flex; justify-content: space-between;">
-  <div>
-    <a type="static" href="create_book.html">Створення книги</a>
-    <a type="static" href="books_table.html">Таблиця книг</a>
-    <a type="static" href="books_list.html">Список книг</a>
-  </div>
-</div>
-<h1>Випадаючий список книг</h1>
-<select id="book-select" onchange="loadBookDetails()">
-  <option value="">Оберіть книгу</option>
-</select>
-<div id="book-details"></div>
-<button onclick="deleteSelectedBook()">Видалити</button>
-<script>
-    function loadBooksDropdown() {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Книги</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <section class="container">
+      <div style="display: flex; justify-content: space-between">
+        <div class="header">
+          <a type="static" class="navigation-link" href="create_book.html"
+            >Створення книги</a
+          >
+          <a type="static" class="navigation-link" href="books_table.html"
+            >Таблиця книг</a
+          >
+          <a type="static" class="navigation-link" href="books_list.html"
+            >Список книг</a
+          >
+        </div>
+      </div>
+      <div class="books_list--container">
+        <div class="books_list--content">
+          <h1>Випадаючий список книг</h1>
+          <div class="delete-form">
+            <select
+              class="select__book"
+              id="book-select"
+              onchange="loadBookDetails()"
+            >
+              <option value="">Оберіть книгу</option>
+            </select>
+            <div id="book-details"></div>
+            <button class="delete_book--btn" onclick="deleteSelectedBook()">
+              Видалити
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function loadBooksDropdown() {
         eel.get_books()(function (books) {
-            var dropdown = document.getElementById('book-select');
-            dropdown.innerHTML = '<option value="">Оберіть книгу</option>';
-            books.forEach(function (book) {
-                dropdown.innerHTML += '<option value="' + book[0] + '">' + book[1] + '</option>';
-            });
+          var dropdown = document.getElementById("book-select");
+          dropdown.innerHTML = '<option value="">Оберіть книгу</option>';
+          books.forEach(function (book) {
+            dropdown.innerHTML +=
+              '<option value="' + book[0] + '">' + book[1] + "</option>";
+          });
         });
-    }
+      }
 
-    function loadBookDetails() {
-        var bookId = document.getElementById('book-select').value;
+      function loadBookDetails() {
+        var bookId = document.getElementById("book-select").value;
         if (bookId) {
-            eel.get_books()(function (books) {
-                var selectedBook = books.find(function (book) {
-                    return book[0] == bookId;
-                });
-                document.getElementById('book-details').innerHTML = '<p><strong>Назва:</strong> ' + selectedBook[1] + '</p>' +
-                    '<p><strong>Опис:</strong> ' + selectedBook[2] + '</p>';
+          eel.get_books()(function (books) {
+            var selectedBook = books.find(function (book) {
+              return book[0] == bookId;
             });
+            document.getElementById("book-details").innerHTML =
+              "<p><strong>Назва:</strong> " +
+              selectedBook[1] +
+              "</p>" +
+              "<p><strong>Опис:</strong> " +
+              selectedBook[2] +
+              "</p>";
+          });
         } else {
-            document.getElementById('book-details').innerHTML = '';
+          document.getElementById("book-details").innerHTML = "";
         }
-    }
+      }
 
-    function deleteSelectedBook() {
-        var bookId = document.getElementById('book-select').value;
+      function deleteSelectedBook() {
+        var bookId = document.getElementById("book-select").value;
         if (bookId && confirm("Ви впевнені, що хочете видалити цю книгу?")) {
-            eel.delete_book(bookId)(function (response) {
-                if (response) {
-                    loadBooksDropdown();
-                    document.getElementById('book-details').innerHTML = '';
-                }
-            });
+          eel.delete_book(bookId)(function (response) {
+            if (response) {
+              loadBooksDropdown();
+              document.getElementById("book-details").innerHTML = "";
+            }
+          });
         }
-    }
+      }
 
-    loadBooksDropdown();
-</script>
-</body>
+      loadBooksDropdown();
+    </script>
+  </body>
 </html>

@@ -1,38 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Створення книги</title>
-  <script type="text/javascript" src="/eel.js"></script>
-</head>
-<body>
-<div style="display: flex; justify-content: space-between;">
-  <div>
-    <a type="static" href="create_book.html">Створення книги</a>
-    <a type="static" href="books_table.html">Таблиця книг</a>
-    <a type="static" href="books_list.html">Список книг</a>
-  </div>
-</div>
-<h2>Створення книги</h2>
-<form onsubmit="createBook(); return false;">
-  <label for="title">Назва книги:</label><br>
-  <input type="text" id="title" name="title"><br>
-  <label for="description">Опис книги:</label><br>
-  <textarea id="description" name="description"></textarea><br>
-  <button type="submit">Створити</button>
-</form>
-<script>
-    function createBook() {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Створення книги</title>
+    <script type="text/javascript" src="/eel.js"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <section class="container">
+      <div style="display: flex; justify-content: space-between">
+        <div class="header">
+          <a type="static" class="navigation-link" href="create_book.html"
+            >Створення книги</a
+          >
+          <a type="static" class="navigation-link" href="books_table.html"
+            >Таблиця книг</a
+          >
+          <a type="static" class="navigation-link" href="books_list.html"
+            >Список книг</a
+          >
+        </div>
+      </div>
+      <div class="content">
+        <h2>Створення книги</h2>
+        <div class="formContainer">
+          <form class="create__form" onsubmit="createBook(); return false;">
+            <div class="create__form--field">
+              <label for="title">Назва книги:</label>
+              <input type="text" id="title" name="title" />
+            </div>
+            <div class="create__form--field">
+              <label for="description">Опис книги:</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+            <div class="create__form--field">
+              <button type="submit">Створити</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <script>
+      function createBook() {
         var title = document.getElementById("title").value;
         var description = document.getElementById("description").value;
 
-        eel.create_book(title, description)(function (response) {
-            alert(response);
-            document.getElementById("title").value = "";
-            document.getElementById("description").value = "";
+        eel.create_book(
+          title,
+          description
+        )(function (response) {
+          alert(response);
+          document.getElementById("title").value = "";
+          document.getElementById("description").value = "";
         });
-    }
-</script>
-</body>
+      }
+    </script>
+  </body>
 </html>
